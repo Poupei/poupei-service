@@ -1,4 +1,4 @@
-package com.serice.poupei
+package com.service.poupei
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

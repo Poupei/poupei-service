@@ -1,4 +1,4 @@
-package com.serice.poupei
+package com.service.poupei
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
