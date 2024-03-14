@@ -2,6 +2,6 @@ package com.service.poupei.infra.database.entities
 
 import jakarta.persistence.Entity
 
-@Entity
+//@Entity
 class TransactionEntity {
 }

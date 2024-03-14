@@ -23,22 +23,21 @@ class TransactionController(
         private val retrieveTransactionUseCase: RetrieveTransactionUseCase
 ) {
 
+//    @GetMapping
+//    fun retrieveAll(): ResponseEntity<List<TransactionDto>> =
+//            ResponseEntity.ok(retrieveAllTransactionsUseCase.all())
 
-    @GetMapping
-    fun retrieveAll(): ResponseEntity<List<TransactionDto>> =
-            ResponseEntity.ok(retrieveAllTransactionsUseCase.all())
+//    @GetMapping("/{id}")
+//    fun retrieveWith(@PathVariable id: String): ResponseEntity<TransactionDto> =
+//            ResponseEntity.ok()
 
-    @GetMapping("/{id}")
-    fun retrieveWith(@PathVariable id: String): ResponseEntity<TransactionDto> =
-            ResponseEntity.ok()
-
-    @PostMapping
-    fun createWith(@RequestBody @Valid): ResponseEntity<TransactionDto> =
-
-    @PutMapping("/{id}")
-    fun updateWith(@PathVariable id: String, @RequestBody @Valid): ResponseEntity<TransactionDto> =
-
-
-    @DeleteMapping("/{id}")
-    fun deleteWith(@PathVariable id: String): ResponseEntity<TransactionDto> =
+//    @PostMapping
+//    fun createWith(@RequestBody @Valid): ResponseEntity<TransactionDto> =
+//
+//    @PutMapping("/{id}")
+//    fun updateWith(@PathVariable id: String, @RequestBody @Valid): ResponseEntity<TransactionDto> =
+//
+//
+//    @DeleteMapping("/{id}")
+//    fun deleteWith(@PathVariable id: String): ResponseEntity<TransactionDto> =
 }
