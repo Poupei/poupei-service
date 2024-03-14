@@ -8,7 +8,7 @@ plugins {
 	kotlin("plugin.jpa") version "1.9.22"
 }
 
-group = "com.serice"
+group = "com.service"
 version = "0.0.1-SNAPSHOT"
 
 java {
@@ -22,6 +22,9 @@ repositories {
 extra["springCloudVersion"] = "2023.0.0"
 
 dependencies {
+	implementation("org.springframework.boot:spring-boot-starter-web") {
+		exclude(group = "org.springframework.boot", module = "spring-boot-starter-tomcat")
+	}
 	implementation("org.springframework.boot:spring-boot-starter-actuator")
 	implementation("org.springframework.boot:spring-boot-starter-jetty")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
