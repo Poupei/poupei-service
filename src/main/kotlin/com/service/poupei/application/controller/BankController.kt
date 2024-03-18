@@ -2,6 +2,7 @@ package com.service.poupei.application.controller
 
 import com.service.poupei.application.controller.dto.BankDto
 import com.service.poupei.application.controller.dto.CreateBankDto
+import com.service.poupei.application.controller.dto.UpdateBankDto
 import com.service.poupei.application.usecase.bank.*
 import jakarta.validation.Valid
 import org.springframework.http.HttpStatus
@@ -33,10 +34,12 @@ class BankController(
             .body(BankDto.from(createBankUseCase.with(createBankDto.toModel())))
 
     @PutMapping("/{id}")
-    fun updateWith(@RequestBody @Valid createBankDto: CreateBankDto): ResponseEntity<BankDto> =
-        ResponseEntity
-            .ok()
-            .body(BankDto.from(updateBankUseCase.with(createBankDto.toModel())))
+    fun updateWith(
+        @PathVariable id: String,
+        @RequestBody @Valid updateBankDto: UpdateBankDto
+    ): ResponseEntity<BankDto> =
+        ResponseEntity.ok()
+            .body(BankDto.from(updateBankUseCase.with(updateBankDto.toModelWith(id))))
 
     @DeleteMapping("/{id}")
     fun deleteWith(@PathVariable id: String): ResponseEntity<BankDto> =
