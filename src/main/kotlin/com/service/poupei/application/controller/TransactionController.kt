@@ -1,5 +1,6 @@
 package com.service.poupei.application.controller
 
+import com.service.poupei.application.controller.dto.CreateTransactionDto
 import com.service.poupei.application.controller.dto.TransactionDto
 import com.service.poupei.application.usecase.transaction.*
 import jakarta.validation.Valid
@@ -23,21 +24,39 @@ class TransactionController(
         private val retrieveTransactionUseCase: RetrieveTransactionUseCase
 ) {
 
-//    @GetMapping
-//    fun retrieveAll(): ResponseEntity<List<TransactionDto>> =
-//            ResponseEntity.ok(retrieveAllTransactionsUseCase.all())
+    @GetMapping
+    fun retrieveAll(): ResponseEntity<List<TransactionDto>> =
+            ResponseEntity.ok(retrieveAllTransactionsUseCase.all().map { transactionModel ->
+                TransactionDto.from(transactionModel)
+            })
 
-//    @GetMapping("/{id}")
-//    fun retrieveWith(@PathVariable id: String): ResponseEntity<TransactionDto> =
-//            ResponseEntity.ok()
+    @GetMapping("/{id}")
+    fun retrieveWith(@PathVariable id: String): ResponseEntity<TransactionDto> =
+            ResponseEntity.ok(TransactionDto.from(
+                    retrieveTransactionUseCase.with(id)
+            ))
 
-//    @PostMapping
-//    fun createWith(@RequestBody @Valid): ResponseEntity<TransactionDto> =
-//
-//    @PutMapping("/{id}")
-//    fun updateWith(@PathVariable id: String, @RequestBody @Valid): ResponseEntity<TransactionDto> =
-//
-//
-//    @DeleteMapping("/{id}")
-//    fun deleteWith(@PathVariable id: String): ResponseEntity<TransactionDto> =
+    @PostMapping
+    fun createWith(@RequestBody @Valid createTransactionDto: CreateTransactionDto): ResponseEntity<TransactionDto> =
+            ResponseEntity.ok(TransactionDto.from(
+                    createTransactionUseCase.with(createTransactionDto.toModel())
+            ))
+
+
+    @PutMapping("/{id}")
+    fun updateWith(
+            @PathVariable id: String,
+            @RequestBody @Valid createTransactionDto: CreateTransactionDto
+    ): ResponseEntity<TransactionDto> =
+            ResponseEntity.ok(TransactionDto.from(
+                    updateTransactionUseCase.with(id, createTransactionDto.toModel())
+            ))
+
+
+
+    @DeleteMapping("/{id}")
+    fun deleteWith(@PathVariable id: String): ResponseEntity<TransactionDto> =
+            ResponseEntity.ok(TransactionDto.from(deleteTransactionUseCase.with(id)))
+
+
 }
