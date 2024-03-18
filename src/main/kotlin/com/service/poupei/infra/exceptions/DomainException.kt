@@ -3,7 +3,8 @@ package com.service.poupei.infra.exceptions
 import com.service.poupei.application.controller.exceptionhandler.ErrorType
 import org.springframework.http.HttpStatus
 
-class NotFoundException(
+open class DomainException(
     override val message: String,
-    override val type: ErrorType = ErrorType.NOT_FOUND
-) : DomainException(message, HttpStatus.NOT_FOUND, type)
+    open val status: HttpStatus = HttpStatus.BAD_REQUEST,
+    open val type: ErrorType
+): RuntimeException(message)
