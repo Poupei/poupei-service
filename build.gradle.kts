@@ -44,6 +44,7 @@ dependencies {
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.security:spring-security-test")
 	testImplementation("io.kotest:kotest-runner-junit5:5.8.0")
+	implementation("com.fasterxml.jackson.core:jackson-databind:2.16.1")
 }
 
 dependencyManagement {
