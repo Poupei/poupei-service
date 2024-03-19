@@ -45,6 +45,7 @@ dependencies {
 	testImplementation("org.springframework.security:spring-security-test")
 	testImplementation("io.kotest:kotest-runner-junit5:5.8.0")
 	implementation("com.fasterxml.jackson.core:jackson-databind:2.16.1")
+	testImplementation("io.mockk:mockk:1.9.3")
 }
 
 dependencyManagement {
