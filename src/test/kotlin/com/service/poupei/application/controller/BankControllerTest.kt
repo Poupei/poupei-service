@@ -3,13 +3,19 @@ package com.service.poupei.application.controller
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.service.poupei.application.controller.dto.BankDto
 import com.service.poupei.application.controller.dto.CreateBankDto
+import com.service.poupei.application.controller.dto.UpdateBankDto
 import com.service.poupei.application.controller.exceptionhandler.ErrorDto
 import com.service.poupei.application.controller.exceptionhandler.ErrorType.NOT_FOUND
 import com.service.poupei.application.controller.exceptionhandler.ErrorType.UNEXPECTED
 import com.service.poupei.application.usecase.bank.*
 import com.service.poupei.domain.model.Bank
 import com.service.poupei.infra.exceptions.NotFoundException
+import io.mockk.clearAllMocks
+import io.mockk.every
+import io.mockk.mockkStatic
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.mockito.Mockito
 import org.springframework.beans.factory.annotation.Autowired
@@ -18,10 +24,9 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.http.MediaType
 import org.springframework.test.context.ActiveProfiles
-import org.springframework.test.web.servlet.MockMvc
-import org.springframework.test.web.servlet.get
-import org.springframework.test.web.servlet.post
+import org.springframework.test.web.servlet.*
 import java.io.File
+import java.util.*
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
@@ -47,6 +52,17 @@ class BankControllerTest {
     private lateinit var deleteBankUseCase: DeleteBankUseCase
 
     private val objectMapper = ObjectMapper()
+
+    @BeforeEach
+    fun setUp() {
+        mockkStatic(UUID::class)
+        every { UUID.randomUUID().toString() } returns bankId
+    }
+
+    @AfterEach
+    fun tearDown() {
+        clearAllMocks()
+    }
 
     @Test
     fun `should return status 200 with body when request for retrieve all banks`() {
@@ -112,7 +128,19 @@ class BankControllerTest {
     }
 
     @Test
-    fun `should return status 200 with body when request for create bank`() {
+    fun `should return status 500 when request for retrieve bank with an error`() {
+        Mockito.`when`(retrieveBankUseCase.with("invalidId")).thenThrow(RuntimeException())
+
+        val result = mockMvc.get("/banks/invalidId").andExpect {
+            status  { isInternalServerError() }
+            content { contentType(MediaType.APPLICATION_JSON) }
+        }.andReturn()
+
+        assertThat(result.response.contentAsString).isEqualTo(toJson(anErrorDto500))
+    }
+
+    @Test
+    fun `should return status 201 with body when request for create bank`() {
         Mockito.`when`(createBankUseCase.with(anCreateBankSafra)).thenReturn(anBankSafra)
 
         val result = mockMvc.post("/banks") {
@@ -135,6 +163,77 @@ class BankControllerTest {
         }.andReturn()
     }
 
+    @Test
+    fun `should return status 500 when request for create bank with an error`() {
+        Mockito.`when`(createBankUseCase.with(anCreateBankSafra)).thenThrow(RuntimeException())
+
+        mockMvc.post("/banks") {
+            content = toJson(anCreateBankDto)
+            contentType = MediaType.APPLICATION_JSON
+        }.andExpect {
+            status { isInternalServerError() }
+        }.andReturn()
+    }
+
+    @Test
+    fun `should return status 200 with body when request for update bank`() {
+        Mockito.`when`(updateBankUseCase.with(anUpdatedBank)).thenReturn(anUpdatedBank)
+
+        val result = mockMvc.put("/banks/$newBankId") {
+            content = toJson(anUpdateBankDto)
+            contentType = MediaType.APPLICATION_JSON
+        }.andExpect {
+            status { isOk() }
+        }.andReturn()
+
+        assertThat(result.response.contentAsString).isEqualTo(toJson(BankDto.from(anUpdatedBank)))
+    }
+
+    @Test
+    fun `should return status 400 when request for update bank with invalid fields`() {
+        mockMvc.put("/banks/$newBankId") {
+            content = anInvalidBodyJson
+            contentType = MediaType.APPLICATION_JSON
+        }.andExpect {
+            status { isBadRequest() }
+        }.andReturn()
+    }
+
+    @Test
+    fun `should return status 500 when request for update bank with an error`() {
+        Mockito.`when`(updateBankUseCase.with(anUpdatedBank)).thenThrow(RuntimeException())
+
+        mockMvc.put("/banks/$newBankId") {
+            content = toJson(anUpdatedBank)
+            contentType = MediaType.APPLICATION_JSON
+        }.andExpect {
+            status { isInternalServerError() }
+        }.andReturn()
+    }
+
+    @Test
+    fun `should return status 200 with body when request for delete bank with valid id`(){
+        Mockito.`when`(deleteBankUseCase.with(bankId)).thenReturn(anBankSafra)
+
+        mockMvc.delete("/banks/$bankId").andExpect { status { isOk() } }
+    }
+
+    @Test
+    fun `should return status 400 with body request for delete bank with invalid id`(){
+        TODO("Not yet implemented")
+    }
+
+    @Test
+    fun `should return status 404 with error response when request for delete bank with not found id`() {
+        Mockito.`when`(deleteBankUseCase.with("notFoundId")).thenThrow(NotFoundException("not found bank"))
+
+        val result = mockMvc.delete("/banks/$bankId").andExpect { status { isOk() } }.andReturn()
+
+        assertThat(result.response.contentAsString).isEqualTo(toJson(anErrorDto404))
+    }
+
+    // TODO: Status 500
+
     private fun toJson(obj: Any): String =
         objectMapper.writeValueAsString(obj)
 }
@@ -144,7 +243,7 @@ private const val bankId = "5076a6f0-a5ff-45aa-ab0c-b94d9ef94241"
 private const val logoPrefix = "poupei-app-multimedia"
 
 private val anCreateBankSafra = Bank(
-    bankId = null,
+    bankId = bankId,
     name = "Banco Safra",
     code = "422",
     logo = "$logoPrefix/banco-safra-logo"
@@ -192,3 +291,13 @@ private val anErrorDto500 = ErrorDto(
     type = UNEXPECTED,
     message = "Unhandled exception java.lang.RuntimeException"
 )
+
+private val anUpdateBankDto = UpdateBankDto(
+    name = "Banco Safra",
+    code = "422",
+    logo = "$logoPrefix/banco-safra-logo"
+)
+
+private const val newBankId = "03ca223a-9932-462c-b191-cacf7473cbb7"
+
+private val anUpdatedBank = anBankSafra.copy(newBankId)

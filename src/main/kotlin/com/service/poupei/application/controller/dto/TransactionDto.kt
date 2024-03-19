@@ -1,8 +1,6 @@
 package com.service.poupei.application.controller.dto
 
 import com.service.poupei.domain.model.Transaction
-import com.service.poupei.infra.database.entities.TransactionEntity
-import java.time.LocalDateTime
 
 data class TransactionDto (
         val transactionId: String,
