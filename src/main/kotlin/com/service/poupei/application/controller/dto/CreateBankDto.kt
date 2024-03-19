@@ -8,7 +8,6 @@ class CreateBankDto(
     val logo: String
 ) {
     fun toModel(): Bank = Bank(
-        bankId = null,
         name = name,
         code = code,
         logo = logo

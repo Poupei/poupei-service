@@ -1,4 +1,6 @@
 package com.service.poupei.infra.database.repositories
 
-interface BankEntityRepository {
-}
+import com.service.poupei.infra.database.entities.BankEntity
+import org.springframework.data.repository.CrudRepository
+
+interface BankEntityRepository : CrudRepository<BankEntity, String>
