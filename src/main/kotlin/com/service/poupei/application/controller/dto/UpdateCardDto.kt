@@ -2,11 +2,12 @@ package com.service.poupei.application.controller.dto
 
 import com.service.poupei.domain.model.Card
 
-class CreateCardDto(
+data class UpdateCardDto (
     val nickname: String,
     val type: String
 ) {
-    fun toModel(accountId: String): Card = Card(
+    fun toModelWith(idCard: String, accountId: String): Card = Card(
+        cardId = idCard,
         accountId = accountId,
         nickname = nickname,
         type = type

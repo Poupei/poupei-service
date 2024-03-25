@@ -2,6 +2,7 @@ package com.service.poupei.application.controller
 
 import com.service.poupei.application.controller.dto.CardDto
 import com.service.poupei.application.controller.dto.CreateCardDto
+import com.service.poupei.application.controller.dto.UpdateCardDto
 import com.service.poupei.application.usecase.card.*
 import jakarta.validation.Valid
 import org.springframework.http.HttpStatus
@@ -19,20 +20,27 @@ class CardController(
 ) {
     @GetMapping
     fun retrieveAll(): ResponseEntity<List<CardDto>> =
-        ResponseEntity.ok(retrieveAllCardUseCase.all().map { CardDto.from(it) })
+        ResponseEntity.ok(retrieveAllCardUseCase.all().map{CardDto.from(it)})
 
     @GetMapping("/{id}")
     fun retrieveWith(@PathVariable id: String): ResponseEntity<CardDto> =
         ResponseEntity.ok(CardDto.from(retrieveCardUseCase.with(id)))
 
-    @PostMapping
-    fun createWith(@RequestBody @Valid createCardDto: CreateCardDto): ResponseEntity<CardDto> =
+    @PostMapping("/{accountId}")
+    fun createWith(
+        @PathVariable accountId: String,
+        @RequestBody @Valid createCardDto: CreateCardDto
+    ): ResponseEntity<CardDto> =
         ResponseEntity.status(HttpStatus.CREATED)
-            .body(CardDto.from(createCardUseCase.with(createCardDto.toModel())))
+            .body(CardDto.from(createCardUseCase.with(createCardDto.toModel(accountId))))
 
-    @PutMapping("/{id}")
-    fun updateWith(@RequestBody @Valid createCardDto: CreateCardDto): ResponseEntity<CardDto> =
-        ResponseEntity.ok().body(CardDto.from(updateCardUseCase.with(createCardDto.toModel())))
+    @PutMapping("/{idCard}/accounts/{accountId}")
+    fun updateWith(
+        @PathVariable idCard: String,
+        @PathVariable accountId: String,
+        @RequestBody @Valid updateCardDto: UpdateCardDto
+    ): ResponseEntity<CardDto> =
+        ResponseEntity.ok().body(CardDto.from(updateCardUseCase.with(updateCardDto.toModelWith(idCard, accountId))))
 
     @DeleteMapping("/{id}")
     fun deleteWith(@PathVariable id: String): ResponseEntity<CardDto> =
