@@ -13,7 +13,7 @@ data class BankDto (
 ) {
     companion object {
         fun from(bank: Bank): BankDto = BankDto(
-            bankId = bank.bankId!!,
+            bankId = bank.bankId,
             name = bank.name,
             code = bank.code,
             logo = bank.logo

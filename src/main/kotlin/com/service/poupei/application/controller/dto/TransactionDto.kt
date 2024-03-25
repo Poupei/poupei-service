@@ -15,10 +15,9 @@ data class TransactionDto(
     val description: String,
     val installment: Int,
     val maxInstallment: Int
-
 ) {
     companion object {
-        fun from(transaction: Transaction): TransactionDto =
+        fun from (transaction: Transaction): TransactionDto =
             TransactionDto(
                 transaction.transactionId!!,
                 transaction.userId,
