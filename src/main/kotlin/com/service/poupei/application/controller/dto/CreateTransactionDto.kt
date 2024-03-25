@@ -18,7 +18,6 @@ data class CreateTransactionDto(
 
     fun toModel(): Transaction  =
             Transaction(
-                transactionId = null,
                 userId = userId,
                 method = method,
                 type = type,

@@ -11,7 +11,7 @@ interface AllTransaction {
 
     fun retrieveWith(id: String): Transaction
 
-    fun updateWith(transaction: Transaction): Transaction
+    fun updateWith(id: String, transaction: Transaction): Transaction
 
     fun deleteWith(id: String): Transaction
 }

@@ -1,4 +1,8 @@
 package com.service.poupei.infra.database.repositories
 
-interface TransactionEntityRepository {
+import com.service.poupei.infra.database.entities.TransactionEntity
+import org.springframework.data.jpa.repository.JpaRepository
+
+interface TransactionEntityRepository : JpaRepository<TransactionEntity, String> {
+
 }

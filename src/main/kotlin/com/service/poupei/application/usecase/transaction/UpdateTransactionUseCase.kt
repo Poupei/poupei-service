@@ -9,5 +9,5 @@ class UpdateTransactionUseCase(
     private val allTransaction: AllTransaction
 ) {
     fun with(id: String, transaction: Transaction) : Transaction =
-            allTransaction.updateWith(transaction);
+            allTransaction.updateWith(id, transaction);
 }
