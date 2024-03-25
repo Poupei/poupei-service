@@ -1,9 +1,7 @@
 package com.service.poupei.infra.database.entities
 
 import com.service.poupei.domain.model.BankAccount
-import jakarta.persistence.Column
-import jakarta.persistence.Entity
-import jakarta.persistence.Id
+import jakarta.persistence.*
 
 @Entity(name = "bank_account")
 data class BankAccountEntity (
@@ -11,7 +9,13 @@ data class BankAccountEntity (
     val bankAccountId: String,
     val userId: String,
     val bankId: String,
-    val name: String
+    val name: String,
+    @OneToMany
+    @JoinColumn
+    val cards: List<CardEntity> = listOf(),
+    @OneToMany
+    @JoinColumn
+    val transactions: List<TransactionEntity> = listOf()
 ) {
     fun toModel(): BankAccount = BankAccount(
         bankAccountId = bankAccountId,

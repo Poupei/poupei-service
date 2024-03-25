@@ -1,7 +1,9 @@
 package com.service.poupei.infra.database.entities
 
 import com.service.poupei.domain.model.Transaction
-import jakarta.persistence.*
+import jakarta.persistence.Entity
+import jakarta.persistence.Id
+import jakarta.persistence.Table
 import jakarta.validation.constraints.NotBlank
 import jakarta.validation.constraints.NotNull
 import jakarta.validation.constraints.Size
@@ -15,8 +17,6 @@ class TransactionEntity(
     @Id
     private val transactionId: String,
 
-    @OneToMany
-    @JoinColumn(name = "user_id")
     private val userId: String,
 
     @NotBlank
@@ -33,12 +33,8 @@ class TransactionEntity(
     @DateTimeFormat()
     private val datetime: String,
 
-    @OneToMany
-    @JoinColumn(name = "account_id")
     private val accountId: String,
 
-    @OneToMany
-    @JoinColumn(name = "card_id")
     private val cardId: String,
 
     @NotBlank

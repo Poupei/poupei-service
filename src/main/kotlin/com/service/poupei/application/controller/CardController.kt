@@ -26,21 +26,14 @@ class CardController(
     fun retrieveWith(@PathVariable id: String): ResponseEntity<CardDto> =
         ResponseEntity.ok(CardDto.from(retrieveCardUseCase.with(id)))
 
-    @PostMapping("/{accountId}")
-    fun createWith(
-        @PathVariable accountId: String,
-        @RequestBody @Valid createCardDto: CreateCardDto
-    ): ResponseEntity<CardDto> =
+    @PostMapping
+    fun createWith(@RequestBody @Valid createCardDto: CreateCardDto): ResponseEntity<CardDto> =
         ResponseEntity.status(HttpStatus.CREATED)
-            .body(CardDto.from(createCardUseCase.with(createCardDto.toModel(accountId))))
+            .body(CardDto.from(createCardUseCase.with(createCardDto.toModel())))
 
-    @PutMapping("/{idCard}/accounts/{accountId}")
-    fun updateWith(
-        @PathVariable idCard: String,
-        @PathVariable accountId: String,
-        @RequestBody @Valid updateCardDto: UpdateCardDto
-    ): ResponseEntity<CardDto> =
-        ResponseEntity.ok().body(CardDto.from(updateCardUseCase.with(updateCardDto.toModelWith(idCard, accountId))))
+    @PutMapping
+    fun updateWith(@RequestBody @Valid updateCardDto: UpdateCardDto): ResponseEntity<CardDto> =
+        ResponseEntity.ok().body(CardDto.from(updateCardUseCase.with(updateCardDto.toModel())))
 
     @DeleteMapping("/{id}")
     fun deleteWith(@PathVariable id: String): ResponseEntity<CardDto> =

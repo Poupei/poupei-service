@@ -5,13 +5,13 @@ import java.util.*
 
 data class Card(
     val cardId: String = UUID.randomUUID().toString(),
-    val accountId: String,
+    val bankAccountId: String,
     val nickname: String,
     val type: String
 ) {
     fun toEntity(): CardEntity = CardEntity(
         cardId = cardId,
-        accountId = accountId,
+        bankAccountId = bankAccountId,
         nickname = nickname,
         type = type
     )
