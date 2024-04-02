@@ -165,6 +165,561 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "bank-accounts",
+			"item": [
+				{
+					"name": "Return all bank accounts list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/bank-account",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"bank-account"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Return an bank account by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/bank-account/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"bank-account",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "16c48e55-6234-4afa-b132-6c8c0ce949c4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create an bank account",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"name\",\r\n    \"code\": \"213\",\r\n    \"logo\": \"test\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}//bank-account",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"",
+								"bank-account"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update bank account with id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"newName\",\r\n    \"code\": \"81293\",\r\n    \"logo\": \"testeteste\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}//bank-account/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"",
+								"bank-account",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "7c72706a-384b-4a6e-af59-b29a7cee1b87"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete with id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"newName\",\r\n    \"code\": \"81293\",\r\n    \"logo\": \"testeteste\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}//bank-account/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"",
+								"bank-account",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "16c48e55-6234-4afa-b132-6c8c0ce949c4"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "cards",
+			"item": [
+				{
+					"name": "Return all cards list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/cards",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"cards"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Return an cards by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/cards/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"cards",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "16c48e55-6234-4afa-b132-6c8c0ce949c4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create an card",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"name\",\r\n    \"code\": \"213\",\r\n    \"logo\": \"test\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/cards",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"cards"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update cards with id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"newName\",\r\n    \"code\": \"81293\",\r\n    \"logo\": \"testeteste\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/cards/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"cards",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "7c72706a-384b-4a6e-af59-b29a7cee1b87"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete with id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"newName\",\r\n    \"code\": \"81293\",\r\n    \"logo\": \"testeteste\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/cards/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"cards",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "16c48e55-6234-4afa-b132-6c8c0ce949c4"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "transactions",
+			"item": [
+				{
+					"name": "Return all transactions list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/transactions",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"transactions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Return an transaction by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/transactions/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"transactions",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "16c48e55-6234-4afa-b132-6c8c0ce949c4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create an transaction",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"name\",\r\n    \"code\": \"213\",\r\n    \"logo\": \"test\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/transactions",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"transactions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update transaction with id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"newName\",\r\n    \"code\": \"81293\",\r\n    \"logo\": \"testeteste\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/transactions/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"transactions",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "7c72706a-384b-4a6e-af59-b29a7cee1b87"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete with id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"newName\",\r\n    \"code\": \"81293\",\r\n    \"logo\": \"testeteste\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/transactions/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"transactions",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "16c48e55-6234-4afa-b132-6c8c0ce949c4"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "Return all users list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/users",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Return an user by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/users/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "16c48e55-6234-4afa-b132-6c8c0ce949c4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create an user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"user-test\",\r\n    \"email\": \"user@email.com\",\r\n    \"password\": \"test\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/users",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update user with id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"user-test\",\r\n    \"email\": \"user@email.com\",\r\n    \"password\": \"test\",\r\n    \"limit_spend\": null,\r\n    \"due_date\": \"2024-04-10\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/users/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "4b7b06b0-6f9c-4fc2-8635-f323c315d477"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete with id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"newName\",\r\n    \"code\": \"81293\",\r\n    \"logo\": \"testeteste\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/users/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "16c48e55-6234-4afa-b132-6c8c0ce949c4"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	],
 	"event": [
