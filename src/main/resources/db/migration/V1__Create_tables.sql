@@ -3,8 +3,8 @@ CREATE TABLE IF NOT EXISTS user_account (
     name VARCHAR(45) NOT NULL,
     email VARCHAR(45) NOT NULL,
     password VARCHAR(45) NOT NULL,
-    limit_spend DOUBLE NOT NULL,
-    duedate DATE NULL
+    limit_spend DOUBLE NULL,
+    due_date DATE NULL
 );
 
 CREATE TABLE IF NOT EXISTS bank (
@@ -27,11 +27,11 @@ CREATE TABLE IF NOT EXISTS bank_account (
 
 CREATE TABLE IF NOT EXISTS card (
     card_id VARCHAR(36) NOT NULL,
-    account_id VARCHAR(36) NOT NULL,
+    bank_account_id VARCHAR(36) NOT NULL,
     nickname VARCHAR(45) NOT NULL,
     type VARCHAR(45) NOT NULL,
     PRIMARY KEY (card_id),
-    FOREIGN KEY (account_id)
+    FOREIGN KEY (bank_account_id)
     REFERENCES bank_account(bank_account_id)
 );
 

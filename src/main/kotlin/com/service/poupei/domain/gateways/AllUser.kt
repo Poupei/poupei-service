@@ -6,7 +6,7 @@ interface AllUser {
 
     fun createWith(user: User) : User
 
-    fun updateWith(id: String, user: User) : User
+    fun updateWith(user: User) : User
 
     fun deleteWith(id: String) : User
 

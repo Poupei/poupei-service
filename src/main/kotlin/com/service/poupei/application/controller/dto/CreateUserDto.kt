@@ -3,7 +3,6 @@ package com.service.poupei.application.controller.dto
 import com.service.poupei.domain.model.User
 
 data class CreateUserDto(
-    val userId: String,
     val name: String,
     val email: String,
     val password: String
@@ -11,7 +10,6 @@ data class CreateUserDto(
 
     fun toModel() : User =
         User(
-            userId = userId,
             name = name,
             email = email,
             password = password,

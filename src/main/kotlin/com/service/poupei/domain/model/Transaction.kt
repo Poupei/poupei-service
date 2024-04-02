@@ -1,14 +1,15 @@
 package com.service.poupei.domain.model
 
 import com.service.poupei.infra.database.entities.TransactionEntity
-import java.util.UUID
+import java.math.BigDecimal
+import java.util.*
 
 data class Transaction(
         val transactionId: String = UUID.randomUUID().toString(),
         val userId: String,
         val method: String,
         val type: Int,
-        val value: Double,
+        val value: BigDecimal,
         val datetime: String,
         val accountId: String,
         val cardId: String,
@@ -22,7 +23,7 @@ data class Transaction(
             userId = this.userId,
             method = this.method,
             type = this.type,
-            value = this.value,
+            transactionValue = this.value,
             datetime = this.datetime,
             accountId = this.accountId,
             cardId = this.cardId,

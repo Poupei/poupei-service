@@ -4,16 +4,10 @@ import com.service.poupei.application.controller.dto.CreateUserDto
 import com.service.poupei.application.controller.dto.UpdateUserDto
 import com.service.poupei.application.controller.dto.UserDto
 import com.service.poupei.application.usecase.user.*
-import jakarta.websocket.server.PathParam
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Controller
-import org.springframework.web.bind.annotation.DeleteMapping
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.PutMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.*
+
 @Controller
 @RequestMapping("/users")
 class UserController(
@@ -41,10 +35,7 @@ class UserController(
 
     @PutMapping("/{id}")
     fun updateWith(@PathVariable id: String, updateUserDto: UpdateUserDto) : ResponseEntity<UserDto> =
-        ResponseEntity.ok(
-            UserDto.from(
-                updateUserUseCase.with(id, updateUserDto.toModel())
-            ));
+        ResponseEntity.ok(UserDto.from(updateUserUseCase.with(updateUserDto.toModelWith(id))))
 
     @DeleteMapping("/{id}")
     fun deleteWith(@PathVariable id: String) : ResponseEntity<UserDto> =

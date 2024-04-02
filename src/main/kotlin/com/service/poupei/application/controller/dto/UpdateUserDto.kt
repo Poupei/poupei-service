@@ -1,19 +1,21 @@
 package com.service.poupei.application.controller.dto
 
+import com.fasterxml.jackson.databind.PropertyNamingStrategies
+import com.fasterxml.jackson.databind.annotation.JsonNaming
 import com.service.poupei.domain.model.User
+import java.math.BigDecimal
 
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy::class)
 data class UpdateUserDto(
-    val userId: String,
     val name: String,
     val email: String,
     val password: String,
-    val limitSpend: Double,
-    val dueDate: String,
-
+    val limitSpend: BigDecimal,
+    val dueDate: String
 ) {
-    fun toModel() : User =
+    fun toModelWith(id: String) : User =
         User(
-            userId = userId,
+            userId = id,
             name = name,
             email = email,
             password = password,

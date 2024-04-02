@@ -8,7 +8,5 @@ import org.springframework.stereotype.Component
 class UpdateUserUseCase(
     private val allUserUse: AllUser
 ) {
-    fun with(id: String, user: User) : User =
-        allUserUse.updateWith(id, user)
-
+    fun with(user: User) : User = allUserUse.updateWith(user)
 }

@@ -1,15 +1,15 @@
 package com.service.poupei.domain.model
 
-import com.service.poupei.infra.database.entities.TransactionEntity
 import com.service.poupei.infra.database.entities.UserEntity
-import java.util.UUID
+import java.math.BigDecimal
+import java.util.*
 
 data class User(
     val userId: String = UUID.randomUUID().toString(),
     val name: String,
     val email: String,
     val password: String,
-    val limitSpend: Double?,
+    val limitSpend: BigDecimal?,
     val dueDate: String?
 ) {
     fun toEntity(): UserEntity =

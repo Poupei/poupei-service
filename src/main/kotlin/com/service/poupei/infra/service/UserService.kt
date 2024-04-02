@@ -13,8 +13,8 @@ class UserService(
 ) : AllUser {
     override fun createWith(user: User): User =
         userEntityRepository.save(user.toEntity()).toModel()
-    override fun updateWith(id: String, user: User): User =
-        retrieve(id).let {
+    override fun updateWith(user: User): User =
+        retrieve(user.userId).let {
             userEntityRepository.save(user.toEntity()).toModel()
         }
 

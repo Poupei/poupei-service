@@ -1,13 +1,14 @@
 package com.service.poupei.application.controller.dto
 
 import com.service.poupei.domain.model.Transaction
+import java.math.BigDecimal
 
 
 data class CreateTransactionDto(
     private val userId: String,
     private val method: String,
     private val type: Int,
-    private val value: Double,
+    private val value: BigDecimal,
     private val dateTime: String,
     private val accountId: String,
     private val cardId: String,

@@ -1,14 +1,14 @@
 package com.service.poupei.application.controller.dto
 
 import com.service.poupei.domain.model.Transaction
-import java.time.LocalDateTime
+import java.math.BigDecimal
 
 data class TransactionDto(
     val transactionId: String,
     val userId: String,
     val method: String,
     val type: Int,
-    val value: Double,
+    val value: BigDecimal,
     val datetime: String,
     val accountId: String,
     val cardId: String,
