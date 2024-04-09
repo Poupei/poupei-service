@@ -16,7 +16,7 @@ data class CardDto(
             cardId = card.cardId,
             bankAccountId = card.bankAccountId,
             nickname = card.nickname,
-            type = card.type
+            type = card.type.toString()
         )
     }
 }

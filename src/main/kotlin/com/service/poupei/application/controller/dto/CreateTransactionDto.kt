@@ -1,33 +1,39 @@
 package com.service.poupei.application.controller.dto
 
+import com.fasterxml.jackson.annotation.JsonProperty
+import com.service.poupei.domain.enums.transaction.TransactionMethod
+import com.service.poupei.domain.enums.transaction.TransactionType
 import com.service.poupei.domain.model.Transaction
 import java.math.BigDecimal
 
-
 data class CreateTransactionDto(
-    private val userId: String,
-    private val method: String,
-    private val type: Int,
-    private val value: BigDecimal,
-    private val dateTime: String,
-    private val accountId: String,
-    private val cardId: String,
-    private val description: String,
-    private val installment: Int,
-    private val maxInstallment: Int
+    @JsonProperty("user_id")
+    val userId: String,
+    val method: TransactionMethod,
+    val type: TransactionType,
+    val value: BigDecimal,
+    @JsonProperty("date_time")
+    val dateTime: String,
+    @JsonProperty("account_id")
+    val accountId: String,
+    @JsonProperty("card_id")
+    val cardId: String,
+    val description: String,
+    val installment: Int,
+    @JsonProperty("max_installment")
+    val maxInstallment: Int
 ) {
-
-    fun toModel(): Transaction  =
-            Transaction(
-                userId = userId,
-                method = method,
-                type = type,
-                value = value,
-                datetime = dateTime,
-                accountId = accountId,
-                cardId = cardId,
-                description = description,
-                installment = installment,
-                maxInstallment = maxInstallment
-            )
+    fun toModel(): Transaction =
+        Transaction(
+            userId = userId,
+            method = method.toString(),
+            type = type.toString(),
+            value = value,
+            datetime = dateTime,
+            accountId = accountId,
+            cardId = cardId,
+            description = description,
+            installment = installment,
+            maxInstallment = maxInstallment
+        )
 }

@@ -1,7 +1,10 @@
 package com.service.poupei.application.controller.dto
 
+import com.fasterxml.jackson.databind.PropertyNamingStrategies
+import com.fasterxml.jackson.databind.annotation.JsonNaming
 import com.service.poupei.domain.model.BankAccount
 
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy::class)
 data class BankAccountDto (
     val bankAccountId: String,
     val userId: String,

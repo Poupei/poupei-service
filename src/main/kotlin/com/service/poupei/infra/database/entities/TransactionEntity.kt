@@ -20,7 +20,7 @@ class TransactionEntity(
     @Size(max = 45)
     private val method: String,
     @NotNull
-    private val type: Int,
+    private val type: String,
     @NotNull
     private val transactionValue: BigDecimal,
     @NotNull

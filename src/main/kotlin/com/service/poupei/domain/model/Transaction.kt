@@ -8,7 +8,7 @@ data class Transaction(
         val transactionId: String = UUID.randomUUID().toString(),
         val userId: String,
         val method: String,
-        val type: Int,
+        val type: String,
         val value: BigDecimal,
         val datetime: String,
         val accountId: String,

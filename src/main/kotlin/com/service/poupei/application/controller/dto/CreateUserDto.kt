@@ -7,7 +7,6 @@ data class CreateUserDto(
     val email: String,
     val password: String
 ) {
-
     fun toModel() : User =
         User(
             name = name,
