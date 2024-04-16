@@ -16,3 +16,7 @@ spring:
           lob:
             non_contextual_creation:
     show-sql: true
+
+springdoc:
+  api-docs:
+    path: /api-docs
