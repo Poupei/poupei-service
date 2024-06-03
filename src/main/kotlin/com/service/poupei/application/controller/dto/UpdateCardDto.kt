@@ -8,15 +8,13 @@ import com.service.poupei.domain.model.Card
 
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy::class)
 data class UpdateCardDto (
-    @JsonProperty("card_id")
-    val cardId: String,
-    @JsonProperty("account_id")
+    @JsonProperty("bank_account_id")
     val accountId: String,
     val nickname: String,
     val type: CardType
 ) {
-    fun toModel(): Card = Card(
-        cardId = cardId,
+    fun toModel(id: String): Card = Card(
+        cardId = id,
         bankAccountId = accountId,
         nickname = nickname,
         type = type
