@@ -3,7 +3,7 @@ package com.service.poupei.infra.service
 import com.service.poupei.domain.gateways.AllCard
 import com.service.poupei.domain.model.Card
 import com.service.poupei.infra.database.repositories.CardEntityRepository
-import com.service.poupei.infra.exceptions.NotFoundException
+import com.service.poupei.domain.exceptions.NotFoundException
 import org.springframework.stereotype.Component
 import kotlin.jvm.optionals.getOrNull
 

@@ -3,7 +3,7 @@ package com.service.poupei.infra.service
 import com.service.poupei.domain.gateways.AllBankAccount
 import com.service.poupei.domain.model.BankAccount
 import com.service.poupei.infra.database.repositories.BankAccountEntityRepository
-import com.service.poupei.infra.exceptions.NotFoundException
+import com.service.poupei.domain.exceptions.NotFoundException
 import org.springframework.stereotype.Service
 import kotlin.jvm.optionals.getOrNull
 

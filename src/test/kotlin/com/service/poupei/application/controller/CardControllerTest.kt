@@ -7,7 +7,7 @@ import com.service.poupei.application.controller.exceptionhandler.ErrorType
 import com.service.poupei.application.usecase.card.*
 import com.service.poupei.domain.enums.card.CardType
 import com.service.poupei.domain.model.Card
-import com.service.poupei.infra.exceptions.NotFoundException
+import com.service.poupei.domain.exceptions.NotFoundException
 import io.mockk.clearAllMocks
 import io.mockk.every
 import io.mockk.mockkStatic

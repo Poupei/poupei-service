@@ -1,4 +1,4 @@
-package com.service.poupei.infra.exceptions
+package com.service.poupei.domain.exceptions
 
 import com.service.poupei.application.controller.exceptionhandler.ErrorType
 import org.springframework.http.HttpStatus

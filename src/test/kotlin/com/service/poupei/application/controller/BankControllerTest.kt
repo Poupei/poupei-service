@@ -9,7 +9,7 @@ import com.service.poupei.application.controller.exceptionhandler.ErrorType.NOT_
 import com.service.poupei.application.controller.exceptionhandler.ErrorType.UNEXPECTED
 import com.service.poupei.application.usecase.bank.*
 import com.service.poupei.domain.model.Bank
-import com.service.poupei.infra.exceptions.NotFoundException
+import com.service.poupei.domain.exceptions.NotFoundException
 import io.mockk.clearAllMocks
 import io.mockk.every
 import io.mockk.mockkStatic

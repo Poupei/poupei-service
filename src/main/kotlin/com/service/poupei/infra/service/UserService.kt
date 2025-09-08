@@ -3,7 +3,7 @@ package com.service.poupei.infra.service
 import com.service.poupei.domain.gateways.AllUser
 import com.service.poupei.domain.model.User
 import com.service.poupei.infra.database.repositories.UserEntityRepository
-import com.service.poupei.infra.exceptions.NotFoundException
+import com.service.poupei.domain.exceptions.NotFoundException
 import org.springframework.stereotype.Service
 import kotlin.jvm.optionals.getOrNull
 
