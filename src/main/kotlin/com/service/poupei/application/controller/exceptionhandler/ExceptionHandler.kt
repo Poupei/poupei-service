@@ -1,7 +1,8 @@
 package com.service.poupei.application.controller.exceptionhandler
 
-import com.service.poupei.application.controller.exceptionhandler.ErrorType.UNEXPECTED
-import com.service.poupei.infra.exceptions.NotFoundException
+import com.service.poupei.application.controller.exceptionhandler.ErrorType.*
+import com.service.poupei.domain.exceptions.NotFoundException
+import com.service.poupei.domain.exceptions.UnauthorizedException
 import org.springframework.http.HttpStatus
 import org.springframework.http.HttpStatus.BAD_REQUEST
 import org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR
@@ -12,6 +13,10 @@ import org.springframework.web.bind.annotation.ExceptionHandler
 
 @ControllerAdvice
 class ExceptionHandler {
+
+    @ExceptionHandler
+    fun handleUnauthorizedException(ex: UnauthorizedException): ResponseEntity<ErrorDto> =
+        buildResponseEntityFrom(HttpStatus.UNAUTHORIZED, UNAUTHORIZED, ex)
 
     @ExceptionHandler
     fun handleInvalidBodyField(ex: HttpMessageNotReadableException): ResponseEntity<ErrorDto> =
@@ -43,6 +48,7 @@ data class ErrorDto (
 enum class ErrorType {
     NOT_FOUND,
     BAD_REQUEST,
+    UNAUTHORIZED,
     CLIENT, //TODO : FOR 4XX CLIENT REQ
     EXTERNAL_DEPENDENCY, // TODO: FOR 5XX CLIENT REQ
     UNEXPECTED
