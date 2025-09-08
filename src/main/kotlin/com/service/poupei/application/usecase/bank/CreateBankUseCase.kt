@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component
 
 @Component
 class CreateBankUseCase(
-  private val allBank: AllBank
+    private val allBank: AllBank
 ) {
-	fun with(bank: Bank): Bank = allBank.createWith(bank)
+    fun with(bank: Bank): Bank = allBank.createWith(bank)
 }

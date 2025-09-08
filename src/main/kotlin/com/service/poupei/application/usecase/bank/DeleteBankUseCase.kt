@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component
 
 @Component
 class DeleteBankUseCase(
-  private val allBank: AllBank
+    private val allBank: AllBank
 ) {
-	fun with(id: String): Bank = allBank.deleteWith(id)
+    fun with(id: String): Bank = allBank.deleteWith(id)
 }

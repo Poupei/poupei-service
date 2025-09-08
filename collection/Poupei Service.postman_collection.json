@@ -1,0 +1,803 @@
+{
+	"info": {
+		"_postman_id": "6a12166c-9318-4c82-997b-cbbddfec217b",
+		"name": "Poupei Service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33701381"
+	},
+	"item": [
+		{
+			"name": "banks",
+			"item": [
+				{
+					"name": "Return all banks list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/banks",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"banks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Return an bank by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/banks/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"banks",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "acf5c14d-2a80-420e-a16c-464533bad54a"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create an bank",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let json = pm.response.json()\r",
+									"pm.globals.set(\"bank-id\", json.bank_id)"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Banco Inter\",\r\n    \"code\": \"077\",\r\n    \"logo\": \"banco-inter\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/banks",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"banks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update bank with id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"C6Bank\",\r\n    \"code\": \"336\",\r\n    \"logo\": \"c6bank\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/banks/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"banks",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "acf5c14d-2a80-420e-a16c-464533bad54a"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete with id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"newName\",\r\n    \"code\": \"81293\",\r\n    \"logo\": \"testeteste\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/banks/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"banks",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "16c48e55-6234-4afa-b132-6c8c0ce949c4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Banks API Brasil API",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://brasilapi.com.br/api/banks/v1",
+							"protocol": "https",
+							"host": [
+								"brasilapi",
+								"com",
+								"br"
+							],
+							"path": [
+								"api",
+								"banks",
+								"v1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "Return all users list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/users",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Return an user by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/users/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "16c48e55-6234-4afa-b132-6c8c0ce949c4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create an user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let json = pm.response.json()\r",
+									"pm.globals.set(\"user-id\", json.user_id)"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"user-test\",\r\n    \"email\": \"user@email.com\",\r\n    \"password\": \"test\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/users",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update user with id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"user-test\",\r\n    \"email\": \"user@email.com\",\r\n    \"password\": \"test\",\r\n    \"limit_spend\": null,\r\n    \"due_date\": \"2024-04-10\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/users/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "4b7b06b0-6f9c-4fc2-8635-f323c315d477"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete with id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"newName\",\r\n    \"code\": \"81293\",\r\n    \"logo\": \"testeteste\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/users/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "16c48e55-6234-4afa-b132-6c8c0ce949c4"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "bank-accounts",
+			"item": [
+				{
+					"name": "Return all bank accounts list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/bank-account",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"bank-account"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Return an bank account by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/bank-account/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"bank-account",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "16c48e55-6234-4afa-b132-6c8c0ce949c4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create an bank account",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let json = pm.response.json()\r",
+									"pm.globals.set(\"bank-account-id\", json.bank_account_id)"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_id\": \"{{user-id}}\",\r\n    \"bank_id\": \"{{bank-id}}\",\r\n    \"name\": \"Conta do Dan\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/bank-account",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"bank-account"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update bank account with id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"newName\",\r\n    \"code\": \"81293\",\r\n    \"logo\": \"testeteste\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}//bank-account/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"",
+								"bank-account",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "7c72706a-384b-4a6e-af59-b29a7cee1b87"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete with id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"newName\",\r\n    \"code\": \"81293\",\r\n    \"logo\": \"testeteste\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}//bank-account/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"",
+								"bank-account",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "16c48e55-6234-4afa-b132-6c8c0ce949c4"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "cards",
+			"item": [
+				{
+					"name": "Return all cards list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/cards",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"cards"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Return an cards by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/cards/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"cards",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "16c48e55-6234-4afa-b132-6c8c0ce949c4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create an card",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let json = pm.response.json()\r",
+									"pm.globals.set(\"card-id\", json.card_id)"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"bank_account_id\": \"{{bank-account-id}}\",\r\n    \"nickname\": \"Cartão Carbon Adicional Daniel\",\r\n    \"type\": \"MULTIPLE\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/cards",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"cards"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update cards with id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"newName\",\r\n    \"code\": \"81293\",\r\n    \"logo\": \"testeteste\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/cards/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"cards",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "7c72706a-384b-4a6e-af59-b29a7cee1b87"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete with id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"newName\",\r\n    \"code\": \"81293\",\r\n    \"logo\": \"testeteste\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/cards/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"cards",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "16c48e55-6234-4afa-b132-6c8c0ce949c4"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "transactions",
+			"item": [
+				{
+					"name": "Return all transactions list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/transactions",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"transactions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Return an transaction by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/transactions/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"transactions",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "16c48e55-6234-4afa-b132-6c8c0ce949c4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create an transaction",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_id\": \"{{user-id}}\",\r\n    \"method\": \"CARD_CREDIT\",\r\n    \"type\": \"EXPENSE\",\r\n    \"value\": 10.00,\r\n    \"date_time\": \"2024-04-01T14:00:00\",\r\n    \"account_id\": \"{{bank-account-id}}\",\r\n    \"card_id\": \"{{card-id}}\",\r\n    \"description\": \"Compra no Carrefour\",\r\n    \"installment\": 1,\r\n    \"max_installment\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/transactions",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"transactions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update transaction with id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"newName\",\r\n    \"code\": \"81293\",\r\n    \"logo\": \"testeteste\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/transactions/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"transactions",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "7c72706a-384b-4a6e-af59-b29a7cee1b87"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete with id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"newName\",\r\n    \"code\": \"81293\",\r\n    \"logo\": \"testeteste\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/transactions/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"transactions",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "16c48e55-6234-4afa-b132-6c8c0ce949c4"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "http://localhost:8080",
+			"type": "string"
+		}
+	]
+}

@@ -1,0 +1,20 @@
+[
+  {
+    "cardId":"0ed28483-a1fc-4e67-97fa-ad799dfb628a",
+    "bankAccountId":"388e901f-8822-4621-8846-f2dada66688a",
+    "nickname":"Cartão Bradesco",
+    "type":"DEBIT"
+  },
+  {
+    "cardId":"06418f2e-6eb8-467d-8814-05b2f5f9bdf1",
+    "bankAccountId":"53b9a3ed-ca20-401f-82fd-2ab7aa5b9f63",
+    "nickname":"Cartão Safra",
+    "type":"DEBIT"
+  },
+  {
+    "cardId":"ae06220a-fead-4754-aa15-77bbea0d829a",
+    "bankAccountId":"0f02a3e9-5ca8-4355-b4c4-bd4209452835",
+    "nickname":"Cartão Itau",
+    "type":"CREDIT"
+  }
+]

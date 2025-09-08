@@ -6,8 +6,8 @@ import org.springframework.stereotype.Component
 
 @Component
 class UpdateBankUseCase(
-  private val allBank: AllBank
+    private val allBank: AllBank
 ) {
-	fun with(bank: Bank) = allBank.updateWith(bank)
+    fun with(bank: Bank) = allBank.updateWith(bank)
 
 }

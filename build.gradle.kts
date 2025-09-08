@@ -8,7 +8,7 @@ plugins {
 	kotlin("plugin.jpa") version "1.9.22"
 }
 
-group = "com.serice"
+group = "com.service"
 version = "0.0.1-SNAPSHOT"
 
 java {
@@ -22,6 +22,9 @@ repositories {
 extra["springCloudVersion"] = "2023.0.0"
 
 dependencies {
+	implementation("org.springframework.boot:spring-boot-starter-web") {
+		exclude(group = "org.springframework.boot", module = "spring-boot-starter-tomcat")
+	}
 	implementation("org.springframework.boot:spring-boot-starter-actuator")
 	implementation("org.springframework.boot:spring-boot-starter-jetty")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
@@ -34,6 +37,7 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.springframework.cloud:spring-cloud-starter-circuitbreaker-resilience4j")
 	implementation("org.springframework.cloud:spring-cloud-starter-openfeign")
+	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0")
 	runtimeOnly("com.h2database:h2")
 	runtimeOnly("com.microsoft.sqlserver:mssql-jdbc")
 	runtimeOnly("com.mysql:mysql-connector-j")
@@ -41,6 +45,8 @@ dependencies {
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.security:spring-security-test")
 	testImplementation("io.kotest:kotest-runner-junit5:5.8.0")
+	implementation("com.fasterxml.jackson.core:jackson-databind:2.16.1")
+	testImplementation("io.mockk:mockk:1.9.3")
 }
 
 dependencyManagement {

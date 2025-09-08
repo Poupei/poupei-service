@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component
 
 @Component
 class RetrieveBankUseCase(
-  private val allBank: AllBank
+    private val allBank: AllBank
 ) {
-	fun with(id: String) = allBank.retrieveWith(id)
+    fun with(id: String) = allBank.retrieveWith(id)
 }
