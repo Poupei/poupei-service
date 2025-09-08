@@ -7,7 +7,6 @@ spring:
   jpa:
     hibernate:
       ddl-auto: valid
-
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL5InnoDBDialect
@@ -16,7 +15,3 @@ spring:
           lob:
             non_contextual_creation:
     show-sql: true
-
-springdoc:
-  swagger-ui:
-    url: /api-docs.yaml

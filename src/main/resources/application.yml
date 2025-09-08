@@ -1,3 +1,29 @@
+app:
+  auth:
+    shared-secret: ${SERVICE_SHARED_SECRET}
+
 spring:
-  profiles:
-    active: test
+  security:
+    user:
+      name: name
+      password: password
+  datasource:
+    url: ${DATABASE_URL}
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
+    driverClassName: ${DATABASE_DRIVER_CLASS_NAME}
+  jpa:
+    hibernate:
+      ddl-auto: ${DATABASE_DDL_AUTO}
+    properties:
+      hibernate:
+        dialect: ${DATABASE_DIALECT}
+        format_sql: ${DATABASE_FORMAT_SQL}
+        jdbc:
+          lob:
+            non_contextual_creation:
+    show-sql: ${DATABASE_SHOW_SQL}
+
+springdoc:
+  swagger-ui:
+    url: /api-docs.yaml

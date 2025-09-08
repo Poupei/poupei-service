@@ -6,10 +6,7 @@ spring:
     driverClassName: org.h2.Driver
   jpa:
     show-sql: true
-    spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
+    database-platform: org.hibernate.dialect.H2Dialect
   h2:
-    console.enabled: true
-
-springdoc:
-  swagger-ui:
-    url: /api-docs.yaml
+    console:
+      enabled: true
