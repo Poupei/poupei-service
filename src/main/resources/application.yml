@@ -19,11 +19,13 @@ spring:
       hibernate:
         dialect: ${DATABASE_DIALECT}
         format_sql: ${DATABASE_FORMAT_SQL}
-        jdbc:
-          lob:
-            non_contextual_creation:
     show-sql: ${DATABASE_SHOW_SQL}
 
 springdoc:
+  api-docs:
+    enabled: true
   swagger-ui:
+    enabled: true
+    path: /docs
     url: /api-docs.yaml
+    disable-swagger-default-url: true

@@ -36,7 +36,7 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.springframework.cloud:spring-cloud-starter-circuitbreaker-resilience4j")
 	implementation("org.springframework.cloud:spring-cloud-starter-openfeign")
-	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0")
+	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.4.0")
 	runtimeOnly("com.h2database:h2")
 	runtimeOnly("com.microsoft.sqlserver:mssql-jdbc")
 	runtimeOnly("com.mysql:mysql-connector-j")
