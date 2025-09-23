@@ -6,5 +6,6 @@ import org.springframework.validation.annotation.Validated
 @ConfigurationProperties("app.auth")
 @Validated
 data class AuthProperties(
-    val sharedSecret: String
+    val sharedSecret: String,
+    val ignorePaths: String
 )

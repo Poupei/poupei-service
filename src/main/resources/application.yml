@@ -1,12 +1,13 @@
 app:
   auth:
     shared-secret: ${SERVICE_SHARED_SECRET}
+    ignore-paths: /swagger,/api-docs,/healthcheck
 
 spring:
   security:
     user:
-      name: name
-      password: password
+      name: ${SECURITY_USER_NAME}
+      password: ${SECURITY_USER_PASSWORD}
   datasource:
     url: ${DATABASE_URL}
     username: ${DATABASE_USERNAME}
