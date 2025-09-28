@@ -1,6 +1,7 @@
 package com.service.poupei.application.controller.exceptionhandler
 
 import com.service.poupei.application.controller.exceptionhandler.ErrorType.*
+import com.service.poupei.domain.exceptions.DomainException
 import com.service.poupei.domain.exceptions.NotFoundException
 import com.service.poupei.domain.exceptions.UnauthorizedException
 import org.springframework.http.HttpStatus
@@ -24,6 +25,10 @@ class ExceptionHandler {
 
     @ExceptionHandler
     fun handleNotFoundException(ex: NotFoundException): ResponseEntity<ErrorDto> =
+        buildResponseEntityFrom(ex.status, ex.type, ex)
+
+    @ExceptionHandler
+    fun handleDomainException(ex: DomainException): ResponseEntity<ErrorDto> =
         buildResponseEntityFrom(ex.status, ex.type, ex)
 
     @ExceptionHandler

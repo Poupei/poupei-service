@@ -5,9 +5,12 @@ import com.service.poupei.application.controller.dto.BankDto
 import com.service.poupei.application.controller.dto.CreateBankDto
 import com.service.poupei.application.controller.dto.UpdateBankDto
 import com.service.poupei.application.controller.exceptionhandler.ErrorDto
+import com.service.poupei.application.controller.exceptionhandler.ErrorType
+import com.service.poupei.application.controller.exceptionhandler.ErrorType.BAD_REQUEST
 import com.service.poupei.application.controller.exceptionhandler.ErrorType.NOT_FOUND
 import com.service.poupei.application.controller.exceptionhandler.ErrorType.UNEXPECTED
 import com.service.poupei.application.usecase.bank.*
+import com.service.poupei.domain.exceptions.DomainException
 import com.service.poupei.domain.model.Bank
 import com.service.poupei.domain.exceptions.NotFoundException
 import io.mockk.clearAllMocks
@@ -68,19 +71,26 @@ class BankControllerTest {
     fun `should return status 200 with body when request for retrieve all banks`() {
         Mockito.`when`(retrieveAllBankUseCase.all()).thenReturn(anBankList)
 
-        val result = mockMvc.get("/banks").andExpect {
+        val result = mockMvc.get("/banks"){
+            header("Authorization", "SECRET")
+        }.andExpect {
             status  { isOk() }
             content { contentType(MediaType.APPLICATION_JSON) }
         }.andReturn()
 
-        assertThat(result.response.contentAsString).isEqualTo(anBankListResponse)
+        val actual = objectMapper.readTree(result.response.contentAsString)
+        val expected = objectMapper.readTree(anBankListResponse)
+
+        assertThat(actual).isEqualTo(expected)
     }
 
     @Test
     fun `should return status 404 with error body when request for retrieve all banks when bank list is empty`() {
         Mockito.`when`(retrieveAllBankUseCase.all()).thenThrow(NotFoundException("not found"))
 
-        val result = mockMvc.get("/banks").andExpect {
+        val result = mockMvc.get("/banks") {
+            header("Authorization", "SECRET")
+        }.andExpect {
             status  { isNotFound() }
             content { contentType(MediaType.APPLICATION_JSON) }
         }.andReturn()
@@ -92,7 +102,9 @@ class BankControllerTest {
     fun `should return status 500 when request for retrieve all banks with error`() {
         Mockito.`when`(retrieveAllBankUseCase.all()).thenThrow(RuntimeException())
 
-        val result = mockMvc.get("/banks").andExpect {
+        val result = mockMvc.get("/banks"){
+            header("Authorization", "SECRET")
+        }.andExpect {
             status  { isInternalServerError() }
             content { contentType(MediaType.APPLICATION_JSON) }
         }.andReturn()
@@ -104,7 +116,9 @@ class BankControllerTest {
     fun `should return status 200 with body when request for retrieve bank with valid id`() {
         Mockito.`when`(retrieveBankUseCase.with(bankId)).thenReturn(anBankSafra)
 
-        val result = mockMvc.get("/banks/$bankId").andExpect {
+        val result = mockMvc.get("/banks/$bankId"){
+            header("Authorization", "SECRET")
+        }.andExpect {
             status { isOk() }
             content { contentType(MediaType.APPLICATION_JSON) }
         }.andReturn()
@@ -119,7 +133,9 @@ class BankControllerTest {
             NotFoundException(errorMessage)
         )
 
-        val result = mockMvc.get("/banks/$bankId").andExpect {
+        val result = mockMvc.get("/banks/$bankId"){
+            header("Authorization", "SECRET")
+        }.andExpect {
             status { isNotFound() }
             content { contentType(MediaType.APPLICATION_JSON) }
         }.andReturn()
@@ -131,7 +147,9 @@ class BankControllerTest {
     fun `should return status 500 when request for retrieve bank with an error`() {
         Mockito.`when`(retrieveBankUseCase.with("invalidId")).thenThrow(RuntimeException())
 
-        val result = mockMvc.get("/banks/invalidId").andExpect {
+        val result = mockMvc.get("/banks/invalidId"){
+            header("Authorization", "SECRET")
+        }.andExpect {
             status  { isInternalServerError() }
             content { contentType(MediaType.APPLICATION_JSON) }
         }.andReturn()
@@ -146,6 +164,7 @@ class BankControllerTest {
         val result = mockMvc.post("/banks") {
             content = toJson(anCreateBankDto)
             contentType = MediaType.APPLICATION_JSON
+            header("Authorization", "SECRET")
         }.andExpect {
             status { isCreated() }
         }.andReturn()
@@ -158,6 +177,7 @@ class BankControllerTest {
         mockMvc.post("/banks") {
             content = anInvalidBodyJson
             contentType = MediaType.APPLICATION_JSON
+            header("Authorization", "SECRET")
         }.andExpect {
             status { isBadRequest() }
         }.andReturn()
@@ -170,6 +190,7 @@ class BankControllerTest {
         mockMvc.post("/banks") {
             content = toJson(anCreateBankDto)
             contentType = MediaType.APPLICATION_JSON
+            header("Authorization", "SECRET")
         }.andExpect {
             status { isInternalServerError() }
         }.andReturn()
@@ -182,6 +203,7 @@ class BankControllerTest {
         val result = mockMvc.put("/banks/$newBankId") {
             content = toJson(anUpdateBankDto)
             contentType = MediaType.APPLICATION_JSON
+            header("Authorization", "SECRET")
         }.andExpect {
             status { isOk() }
         }.andReturn()
@@ -194,6 +216,7 @@ class BankControllerTest {
         mockMvc.put("/banks/$newBankId") {
             content = anInvalidBodyJson
             contentType = MediaType.APPLICATION_JSON
+            header("Authorization", "SECRET")
         }.andExpect {
             status { isBadRequest() }
         }.andReturn()
@@ -206,6 +229,7 @@ class BankControllerTest {
         mockMvc.put("/banks/$newBankId") {
             content = toJson(anUpdatedBank)
             contentType = MediaType.APPLICATION_JSON
+            header("Authorization", "SECRET")
         }.andExpect {
             status { isInternalServerError() }
         }.andReturn()
@@ -215,24 +239,48 @@ class BankControllerTest {
     fun `should return status 200 with body when request for delete bank with valid id`(){
         Mockito.`when`(deleteBankUseCase.with(bankId)).thenReturn(anBankSafra)
 
-        mockMvc.delete("/banks/$bankId").andExpect { status { isOk() } }
+        mockMvc.delete("/banks/$bankId"){
+            header("Authorization", "SECRET")
+        }.andExpect { status { isOk() } }
     }
 
     @Test
     fun `should return status 400 with body request for delete bank with invalid id`(){
-        TODO("Not yet implemented")
+        Mockito.`when`(deleteBankUseCase.with("invalid")).thenThrow(
+            DomainException(message = "Bad Request", type = BAD_REQUEST)
+        )
+
+        val result = mockMvc.delete("/banks/invalid") {
+            header("Authorization", "SECRET")
+        }.andExpect { status { isBadRequest() } }.andReturn()
+
+        assertThat(result.response.contentAsString).isEqualTo(toJson(anErrorDto400))
     }
 
     @Test
     fun `should return status 404 with error response when request for delete bank with not found id`() {
-        Mockito.`when`(deleteBankUseCase.with("notFoundId")).thenThrow(NotFoundException("not found bank"))
+        Mockito.`when`(deleteBankUseCase.with("notFoundId"))
+            .thenThrow(NotFoundException("not found bank"))
 
-        val result = mockMvc.delete("/banks/$bankId").andExpect { status { isOk() } }.andReturn()
+        val result = mockMvc.delete("/banks/notFoundId"){
+            header("Authorization", "SECRET")
+        }.andExpect { status { isNotFound() } }.andReturn()
 
-        assertThat(result.response.contentAsString).isEqualTo(toJson(anErrorDto404))
+        assertThat(result.response.contentAsString).isEqualTo(
+            toJson(anErrorDto404.copy(message = "not found bank"))
+        )
     }
 
-    // TODO: Status 500
+    @Test
+    fun `should return status 500 with error message when request with internal server error`() {
+        Mockito.`when`(deleteBankUseCase.with(bankId)).thenThrow(RuntimeException())
+
+        val result = mockMvc.delete("/banks/$bankId") {
+            header("Authorization", "SECRET")
+        }.andExpect { status { isInternalServerError() } }.andReturn()
+
+        assertThat(result.response.contentAsString).isEqualTo(toJson(anErrorDto500))
+    }
 
     private fun toJson(obj: Any): String =
         objectMapper.writeValueAsString(obj)
@@ -279,6 +327,12 @@ private val anBankList = listOf<Bank>(
 private val anBankListResponse = File(
     "src/test/kotlin/com/service/poupei/application/fixtures/retrieveAllBankList.json"
 ).readText()
+
+private val anErrorDto400 = ErrorDto(
+    status = 400,
+    type = BAD_REQUEST,
+    message = "Bad Request"
+)
 
 private val anErrorDto404 = ErrorDto(
     status = 404,
