@@ -1,6 +1,6 @@
-package com.service.poupei.infra.service
+package com.service.poupei.domain.service
 
-import com.service.poupei.domain.gateways.AllCard
+import com.service.poupei.domain.gateways.CardGateway
 import com.service.poupei.domain.model.Card
 import com.service.poupei.infra.database.repositories.CardEntityRepository
 import com.service.poupei.domain.exceptions.NotFoundException
@@ -10,7 +10,7 @@ import kotlin.jvm.optionals.getOrNull
 @Component
 class CardService(
     private val cardEntityRepository: CardEntityRepository
-) : AllCard {
+) : CardGateway {
     override fun retrieveAll(): List<Card> =
         cardEntityRepository.findAll().map { it.toModel() }
 

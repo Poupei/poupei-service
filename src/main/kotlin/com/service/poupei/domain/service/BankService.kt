@@ -1,6 +1,6 @@
-package com.service.poupei.infra.service
+package com.service.poupei.domain.service
 
-import com.service.poupei.domain.gateways.AllBank
+import com.service.poupei.domain.gateways.BankGateway
 import com.service.poupei.domain.model.Bank
 import com.service.poupei.infra.database.repositories.BankEntityRepository
 import com.service.poupei.domain.exceptions.NotFoundException
@@ -10,7 +10,7 @@ import kotlin.jvm.optionals.getOrNull
 @Component
 class BankService(
     private val bankEntityRepository: BankEntityRepository
-) : AllBank {
+) : BankGateway {
     override fun retrieveAll(): List<Bank> =
         bankEntityRepository.findAll().map { it.toModel() }
 

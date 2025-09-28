@@ -1,6 +1,6 @@
-package com.service.poupei.infra.service
+package com.service.poupei.domain.service
 
-import com.service.poupei.domain.gateways.AllTransaction
+import com.service.poupei.domain.gateways.TransactionGateway
 import com.service.poupei.domain.model.Transaction
 import com.service.poupei.infra.database.repositories.TransactionEntityRepository
 import com.service.poupei.domain.exceptions.NotFoundException
@@ -10,7 +10,7 @@ import kotlin.jvm.optionals.getOrNull
 @Service
 class TransactionService(
     private val transactionEntityRepository: TransactionEntityRepository
-) : AllTransaction{
+) : TransactionGateway{
     override fun createWith(transaction: Transaction): Transaction =
         transactionEntityRepository.save(transaction.toEntity()).toModel()
 

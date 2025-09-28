@@ -18,8 +18,8 @@ class UserController(
     private val createUserUseCase: CreateUserUseCase,
     private val updateUserUseCase: UpdateUserUseCase,
     private val deleteUserUseCase: DeleteUserUseCase,
-    private val retrieveAllUserUseCase: RetrieveAllUserUse,
-    private val retrieveUserCase: RetrieveUserCase
+    private val retrieveAllUsersUseCase: RetrieveAllUsersUseCase,
+    private val retrieveUserUseCase: RetrieveUserUseCase
 ) {
 
     @Operation(
@@ -31,7 +31,7 @@ class UserController(
     )
     @GetMapping
     fun retrieveAll() : ResponseEntity<List<UserDto>> =
-        ResponseEntity.ok(retrieveAllUserUseCase.all().map {
+        ResponseEntity.ok(retrieveAllUsersUseCase.all().map {
             UserDto.from(it)
         })
 
@@ -44,7 +44,7 @@ class UserController(
     )
     @GetMapping("/{id}")
     fun retrieveWith(@PathVariable id: String) : ResponseEntity<UserDto> =
-        ResponseEntity.ok(UserDto.from(retrieveUserCase.with(id)));
+        ResponseEntity.ok(UserDto.from(retrieveUserUseCase.with(id)));
 
     @Operation(
         summary = "Creating a user",

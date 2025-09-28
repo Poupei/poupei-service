@@ -2,7 +2,7 @@ package com.service.poupei.domain.gateways
 
 import com.service.poupei.domain.model.User
 
-interface AllUser {
+interface UserGateway {
 
     fun createWith(user: User) : User
 

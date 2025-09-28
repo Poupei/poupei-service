@@ -3,7 +3,7 @@ package com.service.poupei.domain.gateways
 import com.service.poupei.domain.model.Transaction
 
 
-interface AllTransaction {
+interface TransactionGateway {
 
     fun createWith(transaction: Transaction): Transaction
 

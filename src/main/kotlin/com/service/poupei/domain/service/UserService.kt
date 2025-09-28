@@ -1,6 +1,6 @@
-package com.service.poupei.infra.service
+package com.service.poupei.domain.service
 
-import com.service.poupei.domain.gateways.AllUser
+import com.service.poupei.domain.gateways.UserGateway
 import com.service.poupei.domain.model.User
 import com.service.poupei.infra.database.repositories.UserEntityRepository
 import com.service.poupei.domain.exceptions.NotFoundException
@@ -10,7 +10,7 @@ import kotlin.jvm.optionals.getOrNull
 @Service
 class UserService(
     private val userEntityRepository: UserEntityRepository
-) : AllUser {
+) : UserGateway {
     override fun createWith(user: User): User =
         userEntityRepository.save(user.toEntity()).toModel()
     override fun updateWith(user: User): User =

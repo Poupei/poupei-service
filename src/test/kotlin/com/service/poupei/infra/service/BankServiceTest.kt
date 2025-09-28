@@ -1,6 +1,7 @@
 package com.service.poupei.infra.service
 
 import com.service.poupei.domain.model.Bank
+import com.service.poupei.domain.service.BankService
 import com.service.poupei.infra.database.entities.BankEntity
 import com.service.poupei.infra.database.repositories.BankEntityRepository
 import io.kotest.core.spec.style.StringSpec

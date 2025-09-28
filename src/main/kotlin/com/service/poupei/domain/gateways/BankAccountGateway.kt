@@ -2,7 +2,7 @@ package com.service.poupei.domain.gateways
 
 import com.service.poupei.domain.model.BankAccount
 
-interface AllBankAccount {
+interface BankAccountGateway {
     fun retrieveAll(): List<BankAccount>
     fun retrieveWith(id: String): BankAccount
     fun createWith(bankAccount: BankAccount): BankAccount

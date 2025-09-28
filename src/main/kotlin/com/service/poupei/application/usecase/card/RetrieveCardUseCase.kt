@@ -1,11 +1,11 @@
 package com.service.poupei.application.usecase.card
 
-import com.service.poupei.domain.gateways.AllCard
+import com.service.poupei.domain.gateways.CardGateway
 import org.springframework.stereotype.Component
 
 @Component
 class RetrieveCardUseCase(
-    private val allCard: AllCard
+    private val cardGateway: CardGateway
 ) {
-    fun with(id: String) = allCard.retrieveWith(id)
+    fun with(id: String) = cardGateway.retrieveWith(id)
 }

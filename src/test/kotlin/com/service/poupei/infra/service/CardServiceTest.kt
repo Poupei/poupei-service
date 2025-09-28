@@ -2,6 +2,7 @@ package com.service.poupei.infra.service
 
 import com.service.poupei.domain.enums.card.CardType
 import com.service.poupei.domain.model.Card
+import com.service.poupei.domain.service.CardService
 import com.service.poupei.infra.database.entities.CardEntity
 import com.service.poupei.infra.database.repositories.CardEntityRepository
 import io.kotest.core.spec.style.StringSpec

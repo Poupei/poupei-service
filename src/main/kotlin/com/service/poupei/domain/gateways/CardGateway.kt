@@ -2,7 +2,7 @@ package com.service.poupei.domain.gateways
 
 import com.service.poupei.domain.model.Card
 
-interface AllCard {
+interface CardGateway {
     fun retrieveAll(): List<Card>
     fun retrieveWith(id: String): Card
     fun createWith(card: Card): Card

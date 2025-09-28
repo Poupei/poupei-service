@@ -1,13 +1,13 @@
 package com.service.poupei.application.usecase.transaction
 
-import com.service.poupei.domain.gateways.AllTransaction
+import com.service.poupei.domain.gateways.TransactionGateway
 import com.service.poupei.domain.model.Transaction
 import org.springframework.stereotype.Component
 
 @Component
 class RetrieveAllTransactionsUseCase(
-    private val allTransaction: AllTransaction
+    private val transactionGateway: TransactionGateway
 ) {
     fun all(): List<Transaction> =
-            allTransaction.retrieveAll();
+            transactionGateway.retrieveAll();
 }

@@ -1,11 +1,11 @@
 package com.service.poupei.application.usecase.bank
 
-import com.service.poupei.domain.gateways.AllBank
+import com.service.poupei.domain.gateways.BankGateway
 import org.springframework.stereotype.Component
 
 @Component
 class RetrieveAllBankUseCase(
-    private val allBank: AllBank
+    private val bankGateway: BankGateway
 ) {
-    fun all() = allBank.retrieveAll()
+    fun all() = bankGateway.retrieveAll()
 }
